@@ -1,0 +1,199 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px) saturate(120%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.22s ease-in-out;
+}
+
+.modal-box {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+  width: 100%;
+  max-width: 750px;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 20px 48px rgba(16, 24, 40, 0.28);
+  position: relative;
+  animation: slideIn 0.28s cubic-bezier(.16,.84,.24,1);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0b1220;
+  max-height: 90vh;
+  overflow: auto;
+  overflow-x: hidden; 
+  box-sizing: border-box;
+  border: 1px solid rgba(16,24,40,0.06);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  border: none;
+  background: #f3f4f6;
+  color: #111827;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.14s ease, background 0.14s ease;
+  box-shadow: 0 6px 12px rgba(15,23,42,0.06);
+}
+.modal-close:hover {
+  transform: scale(1.05);
+  background: #eceff6;
+}
+.modal-close:focus {
+  outline: 3px solid rgba(59,130,246,0.18);
+}
+
+.modal-box h3 {
+  text-align: center;
+  margin: 4px 0 14px;
+  color: #0f172a;
+  font-size: 1.25rem; 
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.equipment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.equipment-form {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.equipment-form label {
+  display: flex;
+  flex-direction: column;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.equipment-form label span.required {
+  color: #b91c1c;
+  margin-left: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.equipment-form input,
+.equipment-form select,
+.equipment-form textarea {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.12);
+  font-size: 0.95rem; 
+  background-color: #ffffff;
+  transition: all 0.14s ease;
+  color: #0b1220;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  width: 100%;
+  box-sizing: border-box;
+}
+.equipment-form input::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+.equipment-form input:focus,
+.equipment-form select:focus,
+.equipment-form textarea:focus {
+  border-color: #2563eb;
+  background-color: #fff;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.07), 0 0 0 6px rgba(37,99,235,0.06);
+  outline: none;
+}
+
+.error-text {
+  color: #b91c1c;
+  background: rgba(185,28,28,0.06);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto 6px;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+  align-items: center;
+}
+
+.btn-save {
+  background: linear-gradient(180deg,#2563eb,#1e40af);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+}
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37,99,235,0.22);
+}
+.btn-save:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #374151;
+  border: 1px solid rgba(15,23,42,0.06);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+.btn-cancel:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 420px) {
+  .modal-box {
+    padding: 14px;
+    border-radius: 10px;
+    max-width: 92%;
+  }
+  .modal-close {
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+  }
+  .modal-box h3 {
+    font-size: 1.15rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { transform: translateY(-18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

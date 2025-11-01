@@ -1,0 +1,86 @@
+.review-container {
+  background: #f7f9fc;
+  min-height: calc(100vh - 118px);
+  padding: 32px 48px;
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.review-header h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.review-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.request-table th,
+.request-table td {
+  text-align: left;
+  padding: 14px 16px;
+}
+
+.request-table thead {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.request-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.request-table td button {
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.reject-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.message-box {
+  margin-top: 14px;
+  background: rgba(227,242,253,0.6);
+  color: #0d47a1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .review-container { padding: 18px; }
+  .request-table th, .request-table td { padding: 10px 12px; }
+}
