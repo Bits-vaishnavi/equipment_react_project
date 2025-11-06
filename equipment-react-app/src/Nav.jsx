@@ -22,7 +22,10 @@ export default function Nav({ user, onLogout }) {
 
         {/* Student-only button */}
         {role === "student" && (
-          <button onClick={() => goTo("/request")}>Request Equipment</button>
+          <>
+            <button onClick={() => goTo("/request")}>Request Equipment</button>
+            <button onClick={() => goTo("/my-requests")}>My Requests</button>
+          </>
         )}
 
         {/* Staff-only button */}

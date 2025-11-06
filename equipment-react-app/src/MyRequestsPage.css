@@ -1,0 +1,125 @@
+.my-requests-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+  color: #222;
+}
+
+.my-requests-page h2 {
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Table styling */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.requests-table th,
+.requests-table td {
+  border: 1px solid #d0d0d0;
+  padding: 12px 14px;
+  text-align: center;
+  color: #222;
+  background-color: #ffffff;
+}
+
+.requests-table th {
+  background-color: #e8eaf6; /* Soft lavender-blue for header */
+  color: #1a237e;
+  font-weight: 700;
+}
+
+.requests-table tr:nth-child(even) td {
+  background-color: #f9f9ff; /* Light off-white alternate rows */
+}
+
+.requests-table tr:hover td {
+  background-color: #e3e8ff; /* Slight highlight on hover */
+  transition: background-color 0.2s ease;
+}
+
+/* Empty state */
+.no-requests {
+  text-align: center;
+  padding: 40px 20px;
+  color: #555;
+  font-size: 1rem;
+  border: 1px dashed #bbb;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 0.85rem;
+  color: white;
+}
+
+.status-approved {
+  background-color: #4caf50; /* bright green */
+}
+
+.status-pending {
+  background-color: #ffb300; /* vivid amber */
+  color: #222;
+}
+
+.status-rejected {
+  background-color: #e53935; /* bright red */
+}
+
+.status-returned {
+  background-color: #3f51b5; /* deep indigo */
+}
+
+/* Admin notes */
+.notes-cell {
+  text-align: left;
+  color: #333;
+  font-style: italic;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+/* Message box */
+.message-box {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #ffebee;
+  color: #b71c1c;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .my-requests-page {
+    padding: 15px;
+  }
+
+  .requests-table th,
+  .requests-table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .my-requests-page h2 {
+    font-size: 1.5rem;
+  }
+}

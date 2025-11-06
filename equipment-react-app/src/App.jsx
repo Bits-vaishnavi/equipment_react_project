@@ -4,6 +4,7 @@ import Login from "./Login";
 import Navbar from "./Nav";
 import Home from "./Home";
 import SearchRequest from "./SearchRequest";
+import MyRequests from "./MyRequests";
 import ReviewRequests from "./ReviewRequests";
 import InventoryManagement from "./InventoryManagement";
 
@@ -32,7 +33,10 @@ function App() {
 
           {/* Student-only route */}
           {user.role === "student" && (
-            <Route path="/request" element={<SearchRequest token={user.token} user={user} />} />
+            <>
+              <Route path="/request" element={<SearchRequest token={user.token} user={user} />} />
+              <Route path="/my-requests" element={<MyRequests token={user.token} user={user} />} />
+            </>
           )}
 
           {/* Staff route */}

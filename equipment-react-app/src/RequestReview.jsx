@@ -5,6 +5,7 @@ export default function RequestReview() {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const BASE_URL = "http://localhost:3001";
 
   const user = {
     full_name: localStorage.getItem("username"),
@@ -17,8 +18,8 @@ export default function RequestReview() {
   async function fetchRequests() {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3001/api/requests", {
-        headers: { Authorization: `Bearer ${localStorage.token}` },
+      const res = await fetch(`${BASE_URL}/api/requests`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
       if (!res.ok) {
@@ -40,7 +41,7 @@ export default function RequestReview() {
     // const normalized = action.toLowerCase();
     let endpoint = "";
     let successMessage = "";
-    let BASE_URL = "http://localhost:3001";
+    // let BASE_URL = "http://localhost:3001";
 
     switch (action) {
       case "Approved":
@@ -69,7 +70,7 @@ export default function RequestReview() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 

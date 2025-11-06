@@ -14,7 +14,7 @@ export default function Home({ token, user }) {
     setLoading(true);
     try {
       const res = await fetch("http://localhost:3001/api/equipment", {
-        headers: token ? { Authorization: `Bearer ${ localStorage.token}` } : {},
+        headers: token ? { Authorization: `Bearer ${localStorage.getItem("token")}` } : {},
       });
       if (!res.ok) throw new Error("Failed to fetch equipment list");
       const data = await res.json();

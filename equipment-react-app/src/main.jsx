@@ -6,6 +6,7 @@ import "./index.css";
 import Login from "./Login.jsx";
 import Home from "./Home.jsx";
 import EquipmentRequest from "./EquipmentRequest.jsx";
+import MyRequests from "./MyRequestsPage.jsx";
 import RequestReview from "./RequestReview.jsx";
 import InventoryManagement from "./InventoryManagement.jsx";
 import Nav from "./Nav.jsx";
@@ -69,6 +70,17 @@ function Main() {
             <ProtectedRoute allowedRoles={["student"]}>
               <Layout>
                 <EquipmentRequest />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        {/* Student My Requests Page */}
+        <Route
+          path="/my-requests"
+          element={
+            <ProtectedRoute allowedRoles={["student"]}>
+              <Layout>
+                <MyRequests />
               </Layout>
             </ProtectedRoute>
           }

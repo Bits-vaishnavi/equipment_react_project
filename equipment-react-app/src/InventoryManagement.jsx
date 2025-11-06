@@ -9,6 +9,7 @@ export default function InventoryManagement({ token }) {
   const [categories, setCategories] = useState([]);
   const [deleteItem, setDeleteItem] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const BASE_URL = "http://localhost:3001";
 
   useEffect(() => {
     loadEquipment();
@@ -16,7 +17,7 @@ export default function InventoryManagement({ token }) {
 
   async function loadEquipment() {
     try {
-      const res = await fetch("http://localhost:3001/api/equipment");
+      const res = await fetch(`${BASE_URL}/api/equipment`);
       if (!res.ok) throw new Error("Failed to load equipment");
       const data = await res.json();
       const validData = Array.isArray(data) ? data : [];
@@ -44,10 +45,10 @@ export default function InventoryManagement({ token }) {
     if (!deleteItem) return;
     try {
       const res = await fetch(
-        `http://localhost:3001/api/equipment/${deleteItem.equipment_id}`,
+        `${BASE_URL}/api/equipment/${deleteItem.equipment_id}`,
         {
           method: "DELETE",
-          headers: { Authorization: `Bearer ${localStorage.token}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
       if (res.ok) {
