@@ -6,6 +6,8 @@ export default function RequestReview() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const BASE_URL = "http://localhost:3001";
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   const user = {
     full_name: localStorage.getItem("username"),
@@ -103,6 +105,7 @@ export default function RequestReview() {
         )}
 
         {!loading && requests.length > 0 && (
+          <>
           <table className="request-table">
             <thead>
               <tr>
@@ -115,7 +118,12 @@ export default function RequestReview() {
               </tr>
             </thead>
             <tbody>
-              {requests.map((r) => {
+              {(() => {
+                const indexOfLastItem = currentPage * itemsPerPage;
+                const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+                const currentItems = requests.slice(indexOfFirstItem, indexOfLastItem);
+
+                return currentItems.map((r) => {
                 const status = (r.status || "");
 
                 return (
@@ -180,9 +188,28 @@ export default function RequestReview() {
                     </td>
                   </tr>
                 );
-              })}
+                });
+              })()}
             </tbody>
           </table>
+          {requests.length > 0 && (
+            (() => {
+              const totalPages = Math.ceil(requests.length / itemsPerPage) || 1;
+              const paginate = (pageNumber) => setCurrentPage(pageNumber);
+              return (
+                <div className="pagination">
+                  <button onClick={() => paginate(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="page-button">Previous</button>
+                  <div className="page-numbers">
+                    {[...Array(totalPages)].map((_, index) => (
+                      <button key={index + 1} onClick={() => paginate(index + 1)} className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}>{index + 1}</button>
+                    ))}
+                  </div>
+                  <button onClick={() => paginate(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="page-button">Next</button>
+                </div>
+              );
+            })()
+          )}
+          </>
         )}
 
         {message && <div className="message-box">{message}</div>}

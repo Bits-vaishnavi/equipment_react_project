@@ -9,6 +9,8 @@ export default function InventoryManagement({}) {
   const [categories, setCategories] = useState([]);
   const [deleteItem, setDeleteItem] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   const token = localStorage.getItem("token");
   const BASE_URL = "http://localhost:3001";
 
@@ -116,8 +118,14 @@ export default function InventoryManagement({}) {
           </tr>
         </thead>
         <tbody>
-          {items.map((it) => (
-            <tr key={it.equipment_id}>
+          {(() => {
+            const indexOfLastItem = currentPage * itemsPerPage;
+            const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+            const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+
+            return currentItems.length > 0 ? (
+              currentItems.map((it) => (
+                <tr key={it.equipment_id}>
               <td>{it.name}</td>
               <td>{it.category_name || it.category_id}</td>
               <td>{it.condition}</td>
@@ -136,10 +144,55 @@ export default function InventoryManagement({}) {
                 </button>
               </td>
             </tr>
-          ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>
+                  No items found.
+                </td>
+              </tr>
+            );
+          })()}
         </tbody>
       </table>
+      
+      {items.length > 0 && (
+        (() => {
+          const totalPages = Math.ceil(items.length / itemsPerPage) || 1;
+          const paginate = (pageNumber) => setCurrentPage(pageNumber);
+          return (
+            <div className="pagination">
+              <button
+                onClick={() => paginate(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="page-button"
+              >
+                Previous
+              </button>
 
+              <div className="page-numbers">
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index + 1}
+                    onClick={() => paginate(index + 1)}
+                    className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="page-button"
+              >
+                Next
+              </button>
+            </div>
+          );
+        })()
+      )}
       {showDeleteConfirm && (
         <div className="modal-overlay">
           <div className="modal-box small">

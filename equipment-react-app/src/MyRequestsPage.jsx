@@ -5,6 +5,8 @@ export default function MyRequests({ token }) {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
 
   const user = {
     full_name: localStorage.getItem("userName"),
@@ -77,6 +79,7 @@ export default function MyRequests({ token }) {
               <p>You haven't made any equipment requests yet.</p>
             </div>
           ) : (
+            <>
             <table className="requests-table">
               <thead>
                 <tr>
@@ -90,25 +93,49 @@ export default function MyRequests({ token }) {
                 </tr>
               </thead>
               <tbody>
-                {requests.map((req) => (
-                  <tr key={req.request_id}>
-                    <td>{req.equipment_name}</td>
-                    <td>{req.category_name}</td>
-                    <td>{req.quantity}</td>
-                    <td>{formatDate(req.request_date)}</td>
-                    <td>{formatDate(req.return_date)}</td>
-                    <td>
-                      <span className={`status-badge ${getStatusClass(req.status)}`}>
-                        {req.status || "Pending"}
-                      </span>
-                    </td>
-                    <td className="notes-cell">
-                      {req.admin_notes || "-"}
-                    </td>
-                  </tr>
-                ))}
+                {(() => {
+                  const indexOfLastItem = currentPage * itemsPerPage;
+                  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+                  const currentItems = requests.slice(indexOfFirstItem, indexOfLastItem);
+
+                  return currentItems.map((req) => (
+                    <tr key={req.request_id}>
+                      <td>{req.equipment_name}</td>
+                      <td>{req.category_name}</td>
+                      <td>{req.quantity}</td>
+                      <td>{formatDate(req.request_date)}</td>
+                      <td>{formatDate(req.return_date)}</td>
+                      <td>
+                        <span className={`status-badge ${getStatusClass(req.status)}`}>
+                          {req.status || "Pending"}
+                        </span>
+                      </td>
+                      <td className="notes-cell">
+                        {req.admin_notes || "-"}
+                      </td>
+                    </tr>
+                  ));
+                })()}
               </tbody>
             </table>
+            {requests.length > 0 && (
+              (() => {
+                const totalPages = Math.ceil(requests.length / itemsPerPage) || 1;
+                const paginate = (pageNumber) => setCurrentPage(pageNumber);
+                return (
+                  <div className="pagination">
+                    <button onClick={() => paginate(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="page-button">Previous</button>
+                    <div className="page-numbers">
+                      {[...Array(totalPages)].map((_, index) => (
+                        <button key={index + 1} onClick={() => paginate(index + 1)} className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}>{index + 1}</button>
+                      ))}
+                    </div>
+                    <button onClick={() => paginate(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="page-button">Next</button>
+                  </div>
+                );
+              })()
+            )}
+            </>
           )}
         </>
       )}
