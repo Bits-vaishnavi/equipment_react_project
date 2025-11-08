@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 
 import Login from "./Login.jsx";
+import Signup from "./Signup.jsx";
 import Home from "./Home.jsx";
 import EquipmentRequest from "./EquipmentRequest.jsx";
 import MyRequests from "./MyRequestsPage.jsx";
@@ -14,6 +15,7 @@ import Nav from "./Nav.jsx";
 function ProtectedRoute({ children, allowedRoles }) {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("userRole");
+  const username = localStorage.getItem("username");
 
   if (!token) return <Navigate to="/login" replace />;
   if (allowedRoles && !allowedRoles.includes(role)) {
@@ -50,6 +52,7 @@ function Main() {
         {/* Default route redirects to login */}
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
         {/* Student Home */}
         <Route
@@ -104,7 +107,7 @@ function Main() {
           element={
             <ProtectedRoute allowedRoles={["admin"]}>
               <Layout>
-                <InventoryManagement token={localStorage.getItem("token")} />
+                <InventoryManagement />
               </Layout>
             </ProtectedRoute>
           }

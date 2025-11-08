@@ -45,7 +45,7 @@
 }
 
 .login-form input {
-  width: 100%;
+  width: 90%;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -107,4 +107,15 @@
     padding: 2rem;
     max-width: 90%;
   }
+}
+
+.signup-link {
+  color: #1976d2;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
 }

@@ -48,7 +48,7 @@ function Login() {
     <div className="login-page">
       <div className="login-card">
         <h2>Equipment Portal</h2>
-        <p className="subtitle">Login to manage equipment and requests</p>
+        <br />
 
         <form onSubmit={handleSubmit} className="login-form">
           <input
@@ -71,10 +71,10 @@ function Login() {
 
           <button type="submit">Login</button>
         </form>
-
+        <br />
+        <hr />
         <p className="note">
-          Tip: Create an admin or student via{" "}
-          <code>/api/auth/signup</code> before login.
+          <span className="signup-link" onClick={() => navigate("/signup")}>Sign up </span>
         </p>
       </div>
     </div>

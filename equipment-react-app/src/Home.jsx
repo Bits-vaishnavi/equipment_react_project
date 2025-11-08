@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 
-export default function Home({ token, user }) {
+export default function Home({ token , user}) {
   const [equipment, setEquipment] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);

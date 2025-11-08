@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import EquipmentForm from "./EquipmentForm";
 import "./InventoryManagement.css";
 
-export default function InventoryManagement({ token }) {
+export default function InventoryManagement({}) {
   const [items, setItems] = useState([]);
   const [editing, setEditing] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [categories, setCategories] = useState([]);
   const [deleteItem, setDeleteItem] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const token = localStorage.getItem("token");
   const BASE_URL = "http://localhost:3001";
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function InventoryManagement({ token }) {
         `${BASE_URL}/api/equipment/${deleteItem.equipment_id}`,
         {
           method: "DELETE",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       if (res.ok) {

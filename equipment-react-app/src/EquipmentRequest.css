@@ -1,5 +1,6 @@
 .request-page {
   max-width: 1000px;
+  min-height: calc(100vh - 118px);
   margin: 40px auto;
   background: #fff;
   padding: 25px 30px;
@@ -13,12 +14,23 @@
 }
 
 .request-page input[type="text"] {
-  width: 100%;
-  padding: 10px 12px;
+  width: 90%;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #222;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.request-page input:focus {
+  border-color: #004aad;
+  box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+  outline: none;
 }
 
 .equipment-table {
