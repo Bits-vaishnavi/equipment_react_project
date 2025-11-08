@@ -5,6 +5,8 @@ export default function Home({ token , user}) {
   const [equipment, setEquipment] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     loadEquipment();
@@ -29,6 +31,17 @@ export default function Home({ token , user}) {
   const filteredEquipment = equipment.filter((e) =>
     e.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  // Get current items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredEquipment.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredEquipment.length / itemsPerPage);
 
   return (
     <div className="home-container">
@@ -60,8 +73,8 @@ export default function Home({ token , user}) {
             </tr>
           </thead>
           <tbody>
-            {filteredEquipment.length > 0 ? (
-              filteredEquipment.map((item) => (
+            {currentItems.length > 0 ? (
+              currentItems.map((item) => (
                 <tr key={item.equipment_id}>
                   <td>{item.name}</td>
                   <td>{item.category_name || item.category_id}</td>
@@ -85,6 +98,38 @@ export default function Home({ token , user}) {
             )}
           </tbody>
         </table>
+      )}
+      
+      {filteredEquipment.length > 0 && (
+        <div className="pagination">
+          <button 
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="page-button"
+          >
+            Previous
+          </button>
+          
+          <div className="page-numbers">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => paginate(index + 1)}
+                className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+
+          <button 
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="page-button"
+          >
+            Next
+          </button>
+        </div>
       )}
     </div>
   );

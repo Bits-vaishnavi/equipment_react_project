@@ -7,7 +7,8 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [fullName, setFullName] = useState("");
     const [prnNumber, setPrnNumber] = useState("");
-    const [userType, setUserType] = useState("");
+    const [email, setEmail] = useState("");
+    const [userType, setUserType] = useState("student"); // default to student
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
@@ -21,7 +22,14 @@ function Signup() {
             const response = await fetch("http://localhost:3001/api/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, full_name: fullName, prn_number: prnNumber , user_type: userType }),
+                body: JSON.stringify({
+                    username,
+                    password,
+                    full_name: fullName,
+                    prn_number: userType === "student" ? prnNumber : undefined,
+                    email: userType === "staff" ? email : undefined,
+                    user_type: userType
+                }),
             });
         
 
@@ -72,21 +80,34 @@ function Signup() {
                         required
                     />
 
-                    <input
-                        type="text"
-                        placeholder="PRN Number"
-                        value={prnNumber}
-                        onChange={(e) => setPrnNumber(e.target.value)}
-                        required
-                    />
-
-                    <input
-                        type="text"
-                        placeholder="User Type (student/staff)"
+                    <select
                         value={userType}
                         onChange={(e) => setUserType(e.target.value)}
                         required
-                    />
+                    >
+                        <option value="student">Student</option>
+                        <option value="staff">Staff</option>
+                    </select>
+
+                    {userType === "student" && (
+                        <input
+                            type="text"
+                            placeholder="PRN Number"
+                            value={prnNumber}
+                            onChange={(e) => setPrnNumber(e.target.value)}
+                            required
+                        />
+                    )}
+
+                    {userType === "staff" && (
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    )}
 
                     {error && <p className="error-msg">{error}</p>}
                     {success && <p className="success-msg">{success}</p>}
