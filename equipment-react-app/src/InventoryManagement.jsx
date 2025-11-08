@@ -102,7 +102,6 @@ export default function InventoryManagement({}) {
   return (
     <div className={`inventory-container ${showForm || showDeleteConfirm ? "blurred" : ""}`}>
       <div className="inventory-header">
-        <h3>Inventory Management</h3>
         <button onClick={onAdd}>+ Add Item</button>
       </div>
 

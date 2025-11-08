@@ -95,7 +95,6 @@ export default function RequestReview() {
   return (
     <div className="review-container">
       <div className="review-header">
-        <h3>Review Equipment Requests</h3>
       </div>
 
       <div className="status-filters">

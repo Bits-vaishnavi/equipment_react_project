@@ -69,8 +69,6 @@ export default function MyRequests({ token }) {
 
   return (
     <div className="my-requests-page">
-      <h2>My Equipment Requests</h2>
-
       <div className="status-filters">
         <button
           className={`filter-btn ${statusFilter === 'all' ? 'active' : ''}`}

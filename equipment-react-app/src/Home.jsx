@@ -45,9 +45,6 @@ export default function Home({ token , user}) {
 
   return (
     <div className="home-container">
-      <div className="home-header">
-        <h2>Welcome, {user?.full_name || "User"}!</h2>
-      </div>
 
       <div className="search-section">
         <input

@@ -53,7 +53,6 @@ export default function EquipmentRequest({ token }) {
   return (
     <>
       <div className="request-page">
-        <h2>Search & Request Equipment</h2>
 
         <input
           type="text"
