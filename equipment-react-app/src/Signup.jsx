@@ -7,6 +7,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [fullName, setFullName] = useState("");
     const [prnNumber, setPrnNumber] = useState("");
+    const [userType, setUserType] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Signup() {
             const response = await fetch("http://localhost:3001/api/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password, full_name: fullName, prn_number: prnNumber }),
+                body: JSON.stringify({ username, password, full_name: fullName, prn_number: prnNumber , user_type: userType }),
             });
         
 
@@ -76,6 +77,14 @@ function Signup() {
                         placeholder="PRN Number"
                         value={prnNumber}
                         onChange={(e) => setPrnNumber(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="User Type (student/staff)"
+                        value={userType}
+                        onChange={(e) => setUserType(e.target.value)}
                         required
                     />
 
