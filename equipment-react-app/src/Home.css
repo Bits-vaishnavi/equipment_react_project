@@ -1,7 +1,6 @@
 .home-container {
   padding: 24px;
   background: #f4f6fb;
-  min-height: calc(100vh - 118px);
   font-family: "Inter", sans-serif;
 }
 

@@ -31,14 +31,14 @@ a:hover {
 }
 
 html, body, #root {
-  min-height: 100vh;
   padding-bottom: 2%;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #f4f6fa;
+  /* keep background white across root and body */
+  background: var(--card-bg, #ffffff);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }

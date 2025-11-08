@@ -1,6 +1,5 @@
 .request-page {
   max-width: 1000px;
-  min-height: calc(100vh - 118px);
   margin: 40px auto;
   background: #fff;
   padding: 25px 30px;
