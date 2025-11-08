@@ -9,7 +9,7 @@
 }
 
 .request-page h2 {
-  color: #003366;
+  color: var(--primary);
   margin-bottom: 20px;
 }
 
@@ -46,8 +46,8 @@
 }
 
 .equipment-table th {
-  background: #f5f8ff;
-  color: #003366;
+  background: var(--accent-bg);
+  color: var(--primary);
   font-weight: 600;
 }
 
@@ -99,11 +99,11 @@
 }
 
 .page-button {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  background: var(--card-bg);
+  border: 1px solid var(--table-border);
   padding: 8px 14px;
   border-radius: 8px;
-  color: #003366;
+  color: var(--primary);
   font-weight: 600;
   cursor: pointer;
 }
@@ -129,7 +129,12 @@
 }
 
 .page-number.active {
-  background: #003366;
-  color: white;
-  border-color: #003366;
+  background: var(--primary);
+  color: var(--card-bg);
+  border-color: var(--primary);
+}
+
+/* smooth transitions */
+.equipment-table th, .equipment-table td, .equipment-table tr {
+  transition: background 0.18s ease, color 0.18s ease;
 }

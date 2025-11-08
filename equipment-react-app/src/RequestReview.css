@@ -17,7 +17,7 @@
 .review-header h3 {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #1a237e;
+  color: var(--primary);
 }
 
 .review-card {
@@ -41,8 +41,8 @@
 }
 
 .request-table thead {
-  background-color: #e3f2fd;
-  color: #0d47a1;
+  background-color: var(--accent-bg);
+  color: var(--primary);
   font-weight: 700;
   font-size: 1rem;
 }
@@ -130,7 +130,7 @@
 }
 
 .page-number.active {
-  background: #1a237e;
-  color: white;
-  border-color: #1a237e;
+  background: var(--primary);
+  color: var(--card-bg);
+  border-color: var(--primary);
 }

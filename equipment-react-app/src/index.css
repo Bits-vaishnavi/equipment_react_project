@@ -3,9 +3,17 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* Theme variables (white-blue theme) */
+  --primary: #004aad; /* main blue */
+  --primary-700: #003366; /* darker blue */
+  --accent-bg: #e8efff; /* light blue background */
+  --muted: #94a3b8;
+  --card-bg: #ffffff;
+  --table-border: #e5e7eb;
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -48,12 +56,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--primary);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(0,74,173,0.15);
 }
 button:focus,
 button:focus-visible {
