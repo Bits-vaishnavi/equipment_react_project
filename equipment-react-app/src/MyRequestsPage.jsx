@@ -7,6 +7,7 @@ export default function MyRequests({ token }) {
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const user = {
     full_name: localStorage.getItem("userName"),
@@ -70,6 +71,45 @@ export default function MyRequests({ token }) {
     <div className="my-requests-page">
       <h2>My Equipment Requests</h2>
 
+      <div className="status-filters">
+        <button
+          className={`filter-btn ${statusFilter === 'all' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('all')}
+        >
+          All Requests
+        </button>
+        <button
+          className={`filter-btn ${statusFilter === 'Pending' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('Pending')}
+        >
+          Pending
+        </button>
+        <button
+          className={`filter-btn ${statusFilter === 'Approved' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('Approved')}
+        >
+          Approved
+        </button>
+        <button
+          className={`filter-btn ${statusFilter === 'Issued' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('Issued')}
+        >
+          Issued
+        </button>
+        <button
+          className={`filter-btn ${statusFilter === 'Returned' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('Returned')}
+        >
+          Returned
+        </button>
+        <button
+          className={`filter-btn ${statusFilter === 'Rejected' ? 'active' : ''}`}
+          onClick={() => setStatusFilter('Rejected')}
+        >
+          Rejected
+        </button>
+      </div>
+
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -94,9 +134,13 @@ export default function MyRequests({ token }) {
               </thead>
               <tbody>
                 {(() => {
+                  const filteredRequests = statusFilter === 'all' 
+                    ? requests 
+                    : requests.filter(r => r.status === statusFilter);
+
                   const indexOfLastItem = currentPage * itemsPerPage;
                   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-                  const currentItems = requests.slice(indexOfFirstItem, indexOfLastItem);
+                  const currentItems = filteredRequests.slice(indexOfFirstItem, indexOfLastItem);
 
                   return currentItems.map((req) => (
                     <tr key={req.request_id}>
