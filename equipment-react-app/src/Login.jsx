@@ -47,7 +47,7 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h2>Equipment Portal</h2>
+        <h2>Equipment Management Portal</h2>
         <br />
 
         <form onSubmit={handleSubmit} className="login-form">

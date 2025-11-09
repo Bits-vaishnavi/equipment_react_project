@@ -52,7 +52,7 @@ function Signup() {
     return (
         <div className="login-page">
             <div className="login-card">
-                <h2>Equipment Portal - Signup</h2>
+                <h2>Equipment Management Portal - Signup</h2>
                 <br />
 
                 <form onSubmit={handleSignup} className="login-form">
